@@ -1,12 +1,17 @@
 package com.example.wordbook.register
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.wordbook.R
@@ -30,6 +35,22 @@ class RegisterVocaFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_register_voca, container, false)
         viewModel = ViewModelProvider(this).get(RegisterVocaViewModel::class.java)
+
+
+        binding.btnSearch.setOnClickListener {
+            val myIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.naver.com"))
+            startActivity(myIntent)
+        }
+
+        lateinit var imageView2 : EditText
+        val readImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            binding.imageView2.load(uri)
+        }
+
+        binding.selectBtn.setOnClickListener {
+            readImage.launch("image/*")
+        }
+
 
         binding.confirm.setOnClickListener {
             val english = binding.englishInput.text.toString()
@@ -68,4 +89,8 @@ class RegisterVocaFragment : Fragment() {
     private fun destroy() {
         parentFragmentManager.popBackStack()
     }
+}
+
+private fun ImageView.load(uri: Uri?) {
+
 }
