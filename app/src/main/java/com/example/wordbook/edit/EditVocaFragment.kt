@@ -1,19 +1,26 @@
 package com.example.wordbook.edit
 
 import android.content.Context
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.wordbook.R
 import com.example.wordbook.databinding.FragmentEditVocaBinding
 import kotlinx.coroutines.launch
+import java.io.InputStream
 
 private const val ARG_VOCA_ID = "voca_id"
 
@@ -55,6 +62,19 @@ class EditVocaFragment : Fragment() {
             }
         }
 
+        val getContentImage =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+
+                uri.let { binding.imageView.setImageURI(uri) }
+            }
+
+
+
+        binding.check.setOnClickListener {
+            getContentImage.launch("image/*")
+        }
+
+
         binding.confirm.setOnClickListener {
             val english = binding.englishInput.text.toString()
             val means = binding.meansInput.text.toString()
@@ -66,6 +86,7 @@ class EditVocaFragment : Fragment() {
         }
         return binding.root
     }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

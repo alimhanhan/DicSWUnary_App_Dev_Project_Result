@@ -2,21 +2,26 @@ package com.example.wordbook.register
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.wordbook.R
 import com.example.wordbook.database.Word
 import com.example.wordbook.databinding.FragmentRegisterVocaBinding
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 class RegisterVocaFragment : Fragment() {
 
@@ -28,12 +33,15 @@ class RegisterVocaFragment : Fragment() {
     private lateinit var viewModel: RegisterVocaViewModel
     private lateinit var backPressCallback: OnBackPressedCallback
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_register_voca, container, false)
+            inflater, R.layout.fragment_register_voca, container, false
+        )
+
         viewModel = ViewModelProvider(this).get(RegisterVocaViewModel::class.java)
 
 
@@ -42,14 +50,24 @@ class RegisterVocaFragment : Fragment() {
             startActivity(myIntent)
         }
 
-        lateinit var imageView2 : EditText
-        val readImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            binding.imageView2.load(uri)
-        }
+        //lateinit var imageView2 : EditText
+        //val readImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        //binding.imageView2.load(uri)
+        //}
+
+        val getContentImage =
+            registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+
+                uri.let { binding.imageView2.setImageURI(uri) }
+            }
+
+
 
         binding.selectBtn.setOnClickListener {
-            readImage.launch("image/*")
+            getContentImage.launch("image/*")
         }
+
+
 
 
         binding.confirm.setOnClickListener {
@@ -61,6 +79,10 @@ class RegisterVocaFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun onActivityResult(i: Int, i1: Int, intent: Intent?, function: () -> Unit) {
+
     }
 
     override fun onAttach(context: Context) {
