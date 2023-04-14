@@ -4,7 +4,7 @@
 : DicSWUnary는 효율적인 단어 공부를 위한 Android 기반 단어장 앱입니다.<br>
 : DicSWUnary is an Android-based vocabulary app for efficient word study.
 
-<br><h2>✌🌈Used Stacks</h2>
+<br><h2>🌈Used Stacks</h2>
 : Kotlin & Java + MySQL & Android Studio
 
 
