@@ -5,7 +5,9 @@
 : DicSWUnary is an Android-based vocabulary app for efficient word study.
 
 <br><h2>🌈Used Stacks</h2>
-: Kotlin & Java & Room DB & MySQL & Android Studio
+: Kotlin & Java<br>
+: Room DB & MySQL<br>
+: Android Studio
 
 
 
