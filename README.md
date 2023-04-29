@@ -6,13 +6,21 @@
 
 <br><br><h2>🌈Developed Features</h2>
 **1️⃣ Word addition function**<br>
+: Function to add desired words to personal wordbook<br><br>
 **2️⃣ Word deletion function**<br>
+: Function to freely delete added words<br><br>
 **3️⃣ Word modification function for added words**<br>
+: Function to modify the meaning or spelling of words that have already been added<br><br>
 **4️⃣ Image addition function related to words**<br>
+: Function to add and retrieve images that represent or relate to words<br><br>
 **5️⃣ Website search function**<br>
+: Function to search for necessary images from external websites<br><br>
 **6️⃣ Language selection function for learning**<br>
+: Function to select the desired language between English and Korean for learning<br><br>
 **7️⃣ Function to view added words at a glance**<br>
+: Function to view added words and their meanings at a glance<br><br>
 **8️⃣ Word examination function**<br>
+: Function to confirm and review studied words through testing<br>
 
 
 <br><h2>🌈Used Stacks</h2>
